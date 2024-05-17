@@ -48,7 +48,7 @@ Address the following tasks and questions based on the code provided in this rep
 2. Run the project locally by executing the `main.py` file
 3. Evidence this by providing screenshots of the project directory structure and the output of the `main.py` file
 
-![Local Execution](screenshots/local_setup.png)
+![Local Execution](/screenshots/local_setup.png)
 
 If you are running on a Raspberry Pi, you can use the following command to run the project and then screenshot the result:
 
@@ -64,42 +64,66 @@ python3 main.py
 1. List all the classes you identified in the project. Indicate which classes are base classes and which are subclasses. For subclasses, identify all direct base classes. Use the following table for your answers:
 
 | Class Name | Super or Sub? | Direct parent(s) |
-| ---------- | ------------- | ---------------- |
-| NotReal    | Sub           | NotRealParent    |
-|            |               |                  |
-|            |               |                  |
+|------------|---------------|------------------|
+| Blinkable  | Super         |                  |
+| Happy      | Sub           | Smiley,Blinkable |
+| Sad        | Sub           | Smiley           |
+| Smiley     | Super         |                  |
+
+
 
 ...
 
 2. Explain the concept of 'abstraction' as demonstrated in this project. (Max 150 words)
 
-> Your answer here
+> Abstraction is the concept of using abstract base classes to enable complex and consistent interactions in objects 
+> that make use of them. This allows for the creation of a class that can be used without being fully defined while also
+> functioning as an interface with methods and logic that subclasses adhere to. Similar to a blueprint, abstract classes
+> provide a generic framework for objects to follow while giving them enough flexibility to allow for more unique 
+> characteristics.
+> Abstraction promotes reusability, code modularity, maintainability and flexibility through the use of abstract methods
+> that are reused throughout the structure of the program code and scaled depending on the size of the project.
 
 3. What is the name of the process of deriving from base classes? What is its purpose in this project? (Max 150 words)
 
-> Your answer here
+> The process is known as Inheritance. Inheritance consists of subclasses inheriting characteristics and behaviours from a
+> superclass/base class. Characteristics and behaviours such as attributes and methods can be passed down to subclasses
+> from a parent superclass. This process helps subclasses adopt methods and attributes easily which enhances code 
+> reusability and makes maintenance simpler. In this project, the happy class is a subclass of the classes Smiley and 
+> Blinkable. The happy class is able to inherit the methods and attributes of both parent classes which reduces the 
+> amount of code required to make the happy class function in this program. This also means that other subclasses such as
+> sad is able to pull attributes and methods from the parent class Smiley, making use of Smiley's methods also. Eventually
+> inheritance would allow more expressions to be added to the program through more subclasses.
 
 ### Compare and contrast classes
 
 Compare and contrast the classes Happy and Sad.
 
 1. What is a key difference between the two classes?
-   > Your answer here
+   > The happy class has Blinkable as a parent class while sad does not.
 2. What are the key similarities?
-   > Your answer here
+   > Both have Smiley as a parent class and both have draw_mouth and draw_eyes methods.
 3. What difference stands out the most to you and why?
-   > Your answer here
+   > The added parent class of Blinkable makes it so that the functionality between the two are different with 
+   > happy having a blink method while sad does not.
 4. How do these differences affect the functionality of these classes
-   > Your answer here
+   > The differences allow the happy subclass to have a blink functionality while the sad subclass does not. When running the program,
+   > this would allow the happy face to blink.
 
 ### Where is the Sense(Hat) in the code?
 
 1. Which class(s) utilize the functionality of the SenseHat?
-   > Your answer here
+   > Smiley, happy and sad classes.
 2. Which of these classes directly interact with the SenseHat functionalities?
-   > Your answer here
+   > Smiley
 3. Discuss the hiding of the SenseHAT in terms of encapsulation (100-200 Words)
-   > Your answer here
+   > SenseHAT is used in the Smiley class of the program called from both happy and sad subclasses. Encapsulation of 
+   > SenseHAT functionality serves to reduce potential errors in code when being used in subclasses. By hiding it from other classes,
+   > we can provide a simpler interface for the program to use in order to reduce any potentially unwanted interactions in 
+   > code. This encapsulation allows for safer use of the SenseHAT methods allowing for better protection from 
+   > accidental modifications to code and easier management by separating these chunks of data. Encapsulation also gives 
+   > users flexibility when adding attributes or methods to a class by allowing us to edit the smiley class without fear
+   > of changing the fundamental base code of SenseHAT.
 
 ### Sad Smileys Can’t Blink (Or Can They?)
 
@@ -107,7 +131,9 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 
 1. **Understanding Blink Mechanism:** In your own words, explain how the `blink()` method enables the Happy smiley to blink. What role does the argument play in this method?
 
-> Your answer here
+> The blink() method makes use of an argument that determines how long the face blinks when running the program.
+> The argument is set at 0.25 seconds delay. This delay is the time between the draw_eyes method that changes the pixel 
+> color from yellow to blank to yellow again.
 
 2. **Implement Blink in Sad Class:**
 
@@ -126,11 +152,12 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 
 Include a screenshot of the sad smiley or the modified `main.py`:
 
-![Sad Smiley Blinking](screenshots/sad_blinking.png)
+![Sad Smiley Blinking](/screenshots/sad_blinking.png)
 
 - Observe and document the Sad smiley as it blinks its eyes. Describe any adjustments or issues encountered during implementation.
 
-  > Your answer here
+  > The sad smiley did not function correctly before adding the import time on the sad.py file. This caused the sad 
+  > smiley to blink and not unblink its eyes as it encountered an error.
 
   ### If It Walks Like a Duck…
 
@@ -138,23 +165,31 @@ Include a screenshot of the sad smiley or the modified `main.py`:
 
   1. **Class Type Analysis:** What kind of class is `Blinkable`? Inspect its superclass for clues about its classification.
 
-     > Your answer here
+     > Blinkable is an Abstract Base Class or ABC. 
 
   2. **Class Implementation:** `Blinkable` is a class intended to be implemented by other classes. What generic term describes this kind of class, which is designed for implementation by others? **Clue**: Notice the lack of any concrete implementation and the naming convention.
 
-  > Your answer here
+  > The term for describing a class mainly used by others is called an Interface. As it does not contain any real 
+  > attributes or methods within the class, it is used as a blueprint for subclasses.
 
   3. **OO Principle Identification:** Referring to your answer in question (2), which Object-Oriented (OO) principle does this represent? Choose from the following and justify your answer in 1-2 sentences: Abstraction, Polymorphism, Inheritance, Encapsulation.
 
-  > Your answer here
+  > Abstraction is the main principle question 2 represents. The Blinkable class is made using the abstract method,
+  > it can be made without having any defined interactions for ease of use as a template for other
+  > subclasses such as the Happy class. This could also be used for other subclasses effectively improving reusability and creating
+  > more flexible code.
 
   4. **Implementation Flexibility:** Explain why you were able to grant the Sad Smiley a blinking feature similar to the Happy Smiley's implementation, even without directly using `Blinkable`.
 
-  > Your answer here
+  > Even without directly using the Blinkable class, the blink method can still be defined within the Sad class. Despite
+  > not having Blinkable as a parent, the sad class is able to make use of the blink method.
 
   5. **Concept and Language Specificity:** In relation to your response to question (4), what is this capability known as, and why is it feasible in Python and many other dynamically typed languages but not in most statically typed programming languages like C#? **Clue** This concept is hinted at in the title of this section.
 
-  > Your answer here
+  > Duck typing in Python and dynamically typed languages is the capability to make use of objects based on their 
+  > functionality and methods rather than identity within hierarchy or code structures. This allows Python to be more
+  > flexible and quicker when developing code whereas in C# errors are detected during compilation and does not 
+  > allow for Duck typing in which types and interfaces are checked before code is executed.
 
   ***
 
@@ -167,19 +202,20 @@ Include a screenshot of the sad smiley or the modified `main.py`:
   1. **Defined Colors and Their Location:**
 
      1. Which colors are defined and in which class(s)?
-        > Your answer here
+        > The Smiley class contains the defined colors, white, green, red, yellow and blank.
      2. What type of variables hold these colors? Are the values expected to change during the program's execution? Explain your answer.
-        > Your answer here
+        > The color variables are a tuple which is a sequence of number values held within brackets. The values are 
+         not expected to change as tuple values are immutable.
      3. Add the color blue to the appropriate class using the appropriate format and values.
 
   2. **Usage of Color Variables:**
 
      1. In which classes are the color variables used?
-        > Your answer here
+        > Smiley, Sad and Happy.
 
   3. **Simple Method to Change Colors:**
   4. What is the easiest way you can think to change the smileys to green? Easiest, not necessarily the best!
-     > Your answer here
+     > Changing the value of YELLOW from (255, 255, 0) to (0, 255, 0).
 
   Here's a revised version of the "Flexible Colors – Step 1" section for the smiley project, incorporating your specifications for formatting and content updates:
 
@@ -209,7 +245,7 @@ Include a screenshot of the sad smiley or the modified `main.py`:
 
   4. **Bulk rename:** We want to update our grid to use the value of complexion, but we have so many `Y`'s in the grid. Use your IDE's refactor tool to rename all instances of the **symbol** `Y` to `X`. Where `X` is the value of the `complexion` variable. Include a screenshot evidencing you have found the correct refactor tool and the changes made.
 
-  ![Bulk Rename](screenshots/bulk_rename.png)
+  ![Bulk Rename](/screenshots/bulk_rename.png)
 
   5. **Update the `complexion` method:** Adjust this method to return `self.my_complexion`, ensuring that whatever color is assigned during instantiation is what the smiley displays.
 
